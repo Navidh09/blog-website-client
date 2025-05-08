@@ -22,8 +22,7 @@ const router = createBrowserRouter([
       {
         path: "/blogs",
         element: <Blogs></Blogs>,
-        // loader: () =>
-        //   fetch("https://crowd-funding-server-ruby.vercel.app/campaigns"),
+        loader: () => fetch("http://localhost:5000/blogs"),
       },
       {
         path: "/myWishlist",

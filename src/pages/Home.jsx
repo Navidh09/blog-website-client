@@ -1,9 +1,18 @@
 import React from "react";
+import Banner from "../components/homePage/Banner";
+import RecentPosts from "../components/homePage/RecentPosts";
+import NewsLetter from "../components/homePage/NewsLetter";
+import TrendingPosts from "../components/homePage/TrendingPosts";
+import EditorsPick from "../components/homePage/EditorsPick";
 
 const Home = () => {
   return (
-    <div>
-      <h4 className="font-extrabold text-7xl">This is home</h4>
+    <div className="w-11/12 mx-auto">
+      <Banner></Banner>
+      <RecentPosts></RecentPosts>
+      <NewsLetter></NewsLetter>
+      <TrendingPosts></TrendingPosts>
+      <EditorsPick></EditorsPick>
     </div>
   );
 };
