@@ -17,8 +17,8 @@ const Blogs = () => {
               <tr className="border-2 border-black">
                 <th>#</th>
                 <th>Blog Title</th>
-                <th>Blog Type</th>
-                <th>Deadline Date</th>
+                <th>Blog Category</th>
+                <th>Posted Date</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -36,8 +36,8 @@ const Blogs = () => {
                 <tr className="border-2 border-black">
                   <th>#</th>
                   <th>Blog Title</th>
-                  <th>Blog Type</th>
-                  <th>Created Date</th>
+                  <th>Blog Category</th>
+                  <th>Posted Date</th>
                   <th>Action</th>
                 </tr>
               </thead>
