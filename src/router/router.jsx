@@ -8,6 +8,8 @@ import PrivateRoute from "../privateRoute/PrivateRoute";
 import Wishlist from "../pages/Wishlist";
 import AddBlog from "../pages/AddBlog";
 import FeaturedBlogs from "../pages/FeaturedBlogs";
+import BlogDetails from "../pages/BlogDetails";
+import UpdateBlog from "../pages/UpdateBlog";
 
 const router = createBrowserRouter([
   {
@@ -25,14 +27,33 @@ const router = createBrowserRouter([
         loader: () => fetch("http://localhost:5000/blogs"),
       },
       {
+        path: "/blog/:id",
+        element: (
+          <PrivateRoute>
+            <BlogDetails></BlogDetails>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/blog/${params.id}`),
+      },
+      {
+        path: "/update/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateBlog></UpdateBlog>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/blog/${params.id}`),
+      },
+      {
         path: "/myWishlist",
         element: (
           <PrivateRoute>
             <Wishlist></Wishlist>
           </PrivateRoute>
         ),
-        // loader: () =>
-        //   fetch("https://crowd-funding-server-ruby.vercel.app/myCampaign"),
+        loader: () => fetch("http://localhost:5000/wishlist"),
       },
       {
         path: "/addBlog",

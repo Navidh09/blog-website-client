@@ -1,8 +1,53 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { format } from "date-fns";
+import useAuth from "../hooks/useAuth";
+import Swal from "sweetalert2";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const AllBlogs = ({ blog, idx }) => {
-  const { title, category, createdAt, _id } = blog;
+  const { title, category, createdAt, _id, author } = blog;
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const handleWishlist = () => {
+    const wishlist = {
+      title,
+      category,
+      createdAt,
+      blogID: _id,
+      author,
+      email: user?.email,
+    };
+    if (user) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "It will added to your wishlist",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, Add!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios
+            .post("http://localhost:5000/wishlist", wishlist)
+            .then((res) => {
+              if (res.data.insertedId) {
+                Swal.fire({
+                  title: "Success!",
+                  text: "Successfully added to your wishlist",
+                  icon: "success",
+                });
+              }
+            })
+            .catch((err) => toast.error(err.response.data));
+        }
+      });
+    } else {
+      navigate("/login");
+    }
+  };
 
   return (
     <>
@@ -15,7 +60,11 @@ const AllBlogs = ({ blog, idx }) => {
           <Link to={`/blog/${_id}`} className="btn-primary btn">
             Details
           </Link>
-          <Link to={`/blog/${_id}`} className="btn-primary btn">
+          <Link
+            onClick={handleWishlist}
+            to={"/myWishlist"}
+            className="btn-primary btn"
+          >
             Add to Wishlist
           </Link>
         </td>
