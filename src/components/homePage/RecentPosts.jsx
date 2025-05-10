@@ -1,13 +1,12 @@
-import { Link, useLoaderData } from "react-router";
+import { useLoaderData } from "react-router";
 import AllBlogs from "../AllBlogs";
 
 const RecentPosts = () => {
   const blogs = useLoaderData();
-  console.log(blogs);
 
   return (
     <div>
-      <h2 className="text-center pt-10 text-4xl text-violet-700 font-semibold">
+      <h2 className="text-center my-8 lg:pt-30 lg:pb-10 text-4xl text-violet-700 font-semibold">
         Recent Blogs
       </h2>
       <div className="overflow-x-auto border rounded-box bg-base-300 w-11/12 mx-auto mt-10">

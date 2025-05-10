@@ -25,7 +25,10 @@ const UpdateBlog = () => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         axios
-          .patch(`http://localhost:5000/update/${_id}`, finalData)
+          .patch(
+            `https://blog-website-server-eight-mu.vercel.app/update/${_id}`,
+            finalData
+          )
           .then((res) => {
             if (res.data.modifiedCount) {
               navigate("/blogs");

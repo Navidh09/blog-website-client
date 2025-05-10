@@ -21,17 +21,22 @@ const Wishlist = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/wishlist/${id}`, id).then((res) => {
-          if (res.data.deletedCount) {
-            Swal.fire({
-              title: "Deleted!",
-              text: "Your campaign has been deleted.",
-              icon: "success",
-            });
-            const remainingWish = wishlist.filter((cam) => cam._id !== id);
-            setWishlist(remainingWish);
-          }
-        });
+        axios
+          .delete(
+            `https://blog-website-server-eight-mu.vercel.app/wishlist/${id}`,
+            id
+          )
+          .then((res) => {
+            if (res.data.deletedCount) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Selected blog has been deleted.",
+                icon: "success",
+              });
+              const remainingWish = wishlist.filter((cam) => cam._id !== id);
+              setWishlist(remainingWish);
+            }
+          });
       }
     });
   };

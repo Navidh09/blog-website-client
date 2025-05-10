@@ -18,18 +18,20 @@ const AddBlog = () => {
     };
 
     // console.log(finalData);
-    axios.post(`http://localhost:5000/blogs`, finalData).then((res) => {
-      if (res.data.insertedId) {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Your work has been saved",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        // navigate("/myBlogs");
-      }
-    });
+    axios
+      .post(`https://blog-website-server-eight-mu.vercel.app/blogs`, finalData)
+      .then((res) => {
+        if (res.data.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Blog added Successful",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          // navigate("/myBlogs");
+        }
+      });
   };
 
   return (

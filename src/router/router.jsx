@@ -10,22 +10,25 @@ import AddBlog from "../pages/AddBlog";
 import FeaturedBlogs from "../pages/FeaturedBlogs";
 import BlogDetails from "../pages/BlogDetails";
 import UpdateBlog from "../pages/UpdateBlog";
+import ErrorPage from "../pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
-    errorElement: <h2>Page Not Found</h2>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/blogs6"),
+        loader: () =>
+          fetch("https://blog-website-server-eight-mu.vercel.app/blogs6"),
       },
       {
         path: "/blogs",
         element: <Blogs></Blogs>,
-        loader: () => fetch("http://localhost:5000/blogs"),
+        loader: () =>
+          fetch("https://blog-website-server-eight-mu.vercel.app/blogs"),
       },
       {
         path: "/blog/:id",
@@ -35,7 +38,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/blog/${params.id}`),
+          fetch(
+            `https://blog-website-server-eight-mu.vercel.app/blog/${params.id}`
+          ),
       },
       {
         path: "/update/:id",
@@ -45,7 +50,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/blog/${params.id}`),
+          fetch(
+            `https://blog-website-server-eight-mu.vercel.app/blog/${params.id}`
+          ),
       },
       {
         path: "/myWishlist",
@@ -54,7 +61,8 @@ const router = createBrowserRouter([
             <Wishlist></Wishlist>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/wishlist"),
+        loader: () =>
+          fetch("https://blog-website-server-eight-mu.vercel.app/wishlist"),
       },
       {
         path: "/addBlog",
@@ -69,7 +77,10 @@ const router = createBrowserRouter([
       {
         path: "/featuredBlogs",
         element: <FeaturedBlogs></FeaturedBlogs>,
-        loader: () => fetch("http://localhost:5000/featuredBlogs"),
+        loader: () =>
+          fetch(
+            "https://blog-website-server-eight-mu.vercel.app/featuredBlogs"
+          ),
       },
       {
         path: "/login",

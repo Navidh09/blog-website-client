@@ -43,19 +43,25 @@ const Register = () => {
     const name = e.target.name.value;
     const photo = e.target.photo.value;
 
-    // if (password.length < 6) {
-    //   setErrorMessage("Password must be at least 6 characters long.");
-    //   return;
-    // }
-    // if (!/[A-Z]/.test(password)) {
-    //   setErrorMessage("Password must contain at least one uppercase letter.");
-    //   return;
-    // }
-    // if (!/[a-z]/.test(password)) {
-    //   return setErrorMessage(
-    //     "Password must contain at least one lowercase letter."
-    //   );
-    // }
+    if (password.length < 6) {
+      setErrorMessage("Password must be at least 6 characters long.");
+      return;
+    }
+
+    if (!/[A-Z]/.test(password)) {
+      setErrorMessage("Password must contain at least one uppercase letter.");
+      return;
+    }
+
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+      setErrorMessage("Password must contain at least one special character.");
+      return;
+    }
+
+    if (!/[0-9]/.test(password)) {
+      setErrorMessage("Password must contain at least one numeric character.");
+      return;
+    }
 
     const details = {
       displayName: name,

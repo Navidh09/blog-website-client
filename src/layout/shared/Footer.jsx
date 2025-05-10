@@ -50,7 +50,10 @@ const Footer = () => {
         <aside>
           <p>
             Copyright © {new Date().getFullYear()} - All right reserved by
-            SportsBlog
+            <span className="font-semibold text-violet-500 text-md">
+              {" "}
+              BlogSphere
+            </span>
           </p>
         </aside>
       </footer>

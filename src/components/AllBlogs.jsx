@@ -31,7 +31,10 @@ const AllBlogs = ({ blog, idx }) => {
       }).then((result) => {
         if (result.isConfirmed) {
           axios
-            .post("http://localhost:5000/wishlist", wishlist)
+            .post(
+              "https://blog-website-server-eight-mu.vercel.app/wishlist",
+              wishlist
+            )
             .then((res) => {
               if (res.data.insertedId) {
                 Swal.fire({

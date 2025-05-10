@@ -71,11 +71,13 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
+
         <Link
           to={"/"}
-          className="hidden md:block btn btn-ghost font-bold italic text-[#8A2BE2] text-3xl"
+          className="btn btn-ghost md:flex font-bold italic text-[#8A2BE2] text-3xl"
         >
-          Navid's Blog
+          <img className="w-10" src="../../../public/blog.png" alt="" />
+          <span className="hidden md:flex">BlogSphere</span>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
