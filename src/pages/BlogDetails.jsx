@@ -1,10 +1,48 @@
-import { NavLink, useLoaderData } from "react-router";
+import { NavLink, useLoaderData, useNavigate } from "react-router";
 import useAuth from "../hooks/useAuth";
 import { format } from "date-fns";
+import { useState } from "react";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const BlogDetails = () => {
   const blog = useLoaderData();
   const { user } = useAuth();
+  const [remainingBlog, setRemainingBlog] = useState(blog);
+  const navigate = useNavigate();
+  console.log(remainingBlog);
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(
+            `https://blog-website-server-eight-mu.vercel.app/blog/${id}`,
+            id
+          )
+          .then((res) => {
+            if (res.data.deletedCount) {
+              navigate("/blogs");
+              Swal.fire({
+                title: "Deleted!",
+                text: "Selected blog has been deleted.",
+                icon: "success",
+              });
+              const remaining = blog.filter((blog) => blog._id !== id);
+              setRemainingBlog(remaining);
+            }
+          });
+      }
+    });
+  };
 
   const {
     title,
@@ -44,12 +82,20 @@ const BlogDetails = () => {
             <h2 className="text-red-500 mt-8">
               Users are not allowed to comment on his/her own Post
             </h2>
-            <NavLink
-              to={`/update/${_id}`}
-              className="btn btn-block mt-3 text-xl h-12 hover:bg-[#8A2BE2] hover:text-white text-[#8A2BE2]"
-            >
-              Update Blog
-            </NavLink>
+            <div>
+              <NavLink
+                to={`/update/${_id}`}
+                className="btn btn-block mt-3 text-xl h-12 hover:bg-[#8A2BE2] hover:text-white text-[#8A2BE2]"
+              >
+                Update Blog
+              </NavLink>
+              <button
+                className="btn btn-block mt-3 text-xl h-12 hover:bg-[#8A2BE2] hover:text-white text-[#8A2BE2]"
+                onClick={() => handleDelete(_id)}
+              >
+                Delete Blog
+              </button>
+            </div>
           </>
         ) : (
           <textarea

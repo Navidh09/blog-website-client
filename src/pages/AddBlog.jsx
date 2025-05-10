@@ -1,11 +1,11 @@
-// import { useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import axios from "axios";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
 
 const AddBlog = () => {
   const { user } = useAuth();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleAddJob = (e) => {
     e.preventDefault();
@@ -17,7 +17,6 @@ const AddBlog = () => {
       createdAt: new Date().toISOString(),
     };
 
-    // console.log(finalData);
     axios
       .post(`https://blog-website-server-eight-mu.vercel.app/blogs`, finalData)
       .then((res) => {
@@ -29,7 +28,7 @@ const AddBlog = () => {
             showConfirmButton: false,
             timer: 1500,
           });
-          // navigate("/myBlogs");
+          navigate("/blogs");
         }
       });
   };

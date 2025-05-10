@@ -76,7 +76,11 @@ const Navbar = () => {
           to={"/"}
           className="btn btn-ghost md:flex font-bold italic text-[#8A2BE2] text-3xl"
         >
-          <img className="w-10" src="../../../public/blog.png" alt="" />
+          <img
+            className="w-10 -ml-4 md:ml-0"
+            src="../../../public/blog.png"
+            alt=""
+          />
           <span className="hidden md:flex">BlogSphere</span>
         </Link>
       </div>
@@ -85,7 +89,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         {!user ? (
-          <div className="space-x-2">
+          <div className="space-x-1 flex">
             <NavLink
               className="btn hover:bg-white hover:text-[#8A2BE2] hover:font-bold"
               to={"/login"}

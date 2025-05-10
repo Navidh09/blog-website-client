@@ -1,12 +1,19 @@
-# React + Vite
+Project name: 
+            Create a Blog Website.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Purpose: 
+        The Blog Website allows users to create, read, edit, and delete blog posts. It's designed to provide a platform for sharing ideas, news, and personal stories. The website features user authentication, a rich text editor for creating posts, and a responsive design for all devices.
 
-Currently, two official plugins are available:
+Live URL:
+         https://blog-website-8d15e.web.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Key Features: 
+            1. User Registration/Login
+            2. Blog Creation
+            3. Delete Blog
+            4. Add Blog to wishlist
+            5. Delete Blog from wishlist
+            6. Responsive design
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+NPM Packages Used: 
+                express, mongodb, cors, axios, react, react-router-dom, etc.
