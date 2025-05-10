@@ -29,15 +29,15 @@ const Banner = () => {
         className="mySwiper"
       >
         <SwiperSlide>
-          <img className="h-[30rem] w-full" src={sliderImage} alt="" />
+          <img className="lg:h-[30rem] w-full" src={sliderImage} alt="" />
         </SwiperSlide>
         <SwiperSlide>
           {" "}
-          <img className="h-[30rem] w-full" src={sliderImage1} alt="" />
+          <img className="lg:h-[30rem] w-full" src={sliderImage1} alt="" />
         </SwiperSlide>
         <SwiperSlide>
           {" "}
-          <img className="h-[30rem] w-full" src={sliderImage2} alt="" />
+          <img className="lg:h-[30rem] w-full" src={sliderImage2} alt="" />
         </SwiperSlide>
       </Swiper>
     </>

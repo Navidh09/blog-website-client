@@ -73,9 +73,9 @@ const Navbar = () => {
         </div>
         <Link
           to={"/"}
-          className="btn btn-ghost font-bold italic text-[#8A2BE2] text-3xl "
+          className="hidden md:block btn btn-ghost font-bold italic text-[#8A2BE2] text-3xl"
         >
-          SportBlogs
+          Navid's Blog
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">

@@ -15,7 +15,6 @@ const UpdateBlog = () => {
     const formData = new FormData(e.target);
     const finalData = Object.fromEntries(formData.entries());
 
-    console.log(finalData);
     Swal.fire({
       title: "Do you want to save the changes?",
       showDenyButton: true,

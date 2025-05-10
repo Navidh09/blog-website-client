@@ -40,6 +40,7 @@ const AllBlogs = ({ blog, idx }) => {
                   icon: "success",
                 });
               }
+              navigate("/myWishlist");
             })
             .catch((err) => toast.error(err.response.data));
         }
@@ -56,15 +57,11 @@ const AllBlogs = ({ blog, idx }) => {
         <td>{title}</td>
         <td>{category}</td>
         <td>{format(new Date(createdAt), "dd MMM yyyy")}</td>
-        <td className="flex gap-3">
+        <td className="md:flex-row flex-col md:space-x-3 md:space-y-0 space-y-3">
           <Link to={`/blog/${_id}`} className="btn-primary btn">
             Details
           </Link>
-          <Link
-            onClick={handleWishlist}
-            to={"/myWishlist"}
-            className="btn-primary btn"
-          >
+          <Link onClick={handleWishlist} className="btn-primary btn">
             Add to Wishlist
           </Link>
         </td>

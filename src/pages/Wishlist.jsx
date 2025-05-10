@@ -55,31 +55,30 @@ const Wishlist = () => {
               </tr>
             </thead>
             <tbody>
-              {wishlist.map(
-                (wish, idx) =>
-                  wish.email === user.email && (
-                    <tr className="border-2 border-black">
-                      <th>{idx + 1}</th>
-                      <td>{wish.title}</td>
-                      <td>{wish.category}</td>
-                      <td>{format(new Date(wish.createdAt), "dd MMM yyyy")}</td>
-                      <td className="flex gap-3">
-                        <Link
-                          to={`/blog/${wish.blogID}`}
-                          className="btn-primary btn"
-                        >
-                          Details
-                        </Link>
-                        <Link
-                          onClick={() => handleDelete(wish._id)}
-                          className="btn-primary btn bg-red-600"
-                        >
-                          Delete
-                        </Link>
-                      </td>
-                    </tr>
-                  )
-              )}
+              {wishlist
+                .filter((wish) => wish.email === user.email)
+                .map((wish, idx) => (
+                  <tr className="border-2 border-black">
+                    <th>{idx + 1}</th>
+                    <td>{wish.title}</td>
+                    <td>{wish.category}</td>
+                    <td>{format(new Date(wish.createdAt), "dd MMM yyyy")}</td>
+                    <td className="flex gap-3">
+                      <Link
+                        to={`/blog/${wish.blogID}`}
+                        className="btn-primary btn"
+                      >
+                        Details
+                      </Link>
+                      <Link
+                        onClick={() => handleDelete(wish._id)}
+                        className="btn-primary btn bg-red-600"
+                      >
+                        Delete
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         ) : (
