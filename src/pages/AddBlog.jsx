@@ -18,7 +18,7 @@ const AddBlog = () => {
     };
 
     axios
-      .post(`https://blog-website-server-eight-mu.vercel.app/blogs`, finalData)
+      .post(`${import.meta.env.VITE_API_URL}/blogs`, finalData)
       .then((res) => {
         if (res.data.insertedId) {
           Swal.fire({

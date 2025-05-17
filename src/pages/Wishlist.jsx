@@ -22,10 +22,7 @@ const Wishlist = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(
-            `https://blog-website-server-eight-mu.vercel.app/wishlist/${id}`,
-            id
-          )
+          .delete(`${import.meta.env.VITE_API_URL}/wishlist/${id}`, id)
           .then((res) => {
             if (res.data.deletedCount) {
               Swal.fire({
@@ -33,7 +30,7 @@ const Wishlist = () => {
                 text: "Selected blog has been deleted.",
                 icon: "success",
               });
-              const remainingWish = wishlist.filter((cam) => cam._id !== id);
+              const remainingWish = wishlist.filter((wish) => wish._id !== id);
               setWishlist(remainingWish);
             }
           });
@@ -63,7 +60,7 @@ const Wishlist = () => {
               {wishlist
                 .filter((wish) => wish.email === user.email)
                 .map((wish, idx) => (
-                  <tr className="border-2 border-black">
+                  <tr className="border-2 border-black" key={wish._id}>
                     <th>{idx + 1}</th>
                     <td>{wish.title}</td>
                     <td>{wish.category}</td>

@@ -1,8 +1,16 @@
-import { useLoaderData } from "react-router";
+import { useEffect } from "react";
 import AllBlogs from "../components/AllBlogs";
+import axios from "axios";
+import { useState } from "react";
 
 const Blogs = () => {
-  const blogs = useLoaderData();
+  const [blogs, setBlogs] = useState([]);
+
+  useEffect(() => {
+    axios.get(`${import.meta.env.VITE_API_URL}/blogs`).then((res) => {
+      setBlogs(res.data);
+    });
+  }, []);
 
   return (
     <div>

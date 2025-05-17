@@ -31,10 +31,7 @@ const AllBlogs = ({ blog, idx }) => {
       }).then((result) => {
         if (result.isConfirmed) {
           axios
-            .post(
-              "https://blog-website-server-eight-mu.vercel.app/wishlist",
-              wishlist
-            )
+            .post(`${import.meta.env.VITE_API_URL}/wishlist`, wishlist)
             .then((res) => {
               if (res.data.insertedId) {
                 Swal.fire({

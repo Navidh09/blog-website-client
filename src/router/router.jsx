@@ -21,14 +21,11 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () =>
-          fetch("https://blog-website-server-eight-mu.vercel.app/blogs6"),
+        loader: () => fetch(`${import.meta.env.VITE_API_URL}/blogs6`),
       },
       {
         path: "/blogs",
         element: <Blogs></Blogs>,
-        loader: () =>
-          fetch("https://blog-website-server-eight-mu.vercel.app/blogs"),
       },
       {
         path: "/blog/:id",
@@ -38,9 +35,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(
-            `https://blog-website-server-eight-mu.vercel.app/blog/${params.id}`
-          ),
+          fetch(`${import.meta.env.VITE_API_URL}/blog/${params.id}`),
       },
       {
         path: "/update/:id",
@@ -50,9 +45,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(
-            `https://blog-website-server-eight-mu.vercel.app/blog/${params.id}`
-          ),
+          fetch(`${import.meta.env.VITE_API_URL}/blog/${params.id}`),
       },
       {
         path: "/myWishlist",
@@ -61,8 +54,7 @@ const router = createBrowserRouter([
             <Wishlist></Wishlist>
           </PrivateRoute>
         ),
-        loader: () =>
-          fetch("https://blog-website-server-eight-mu.vercel.app/wishlist"),
+        loader: () => fetch(`${import.meta.env.VITE_API_URL}/wishlist`),
       },
       {
         path: "/addBlog",
@@ -71,16 +63,11 @@ const router = createBrowserRouter([
             <AddBlog></AddBlog>
           </PrivateRoute>
         ),
-        // loader: () =>
-        //   fetch("https://crowd-funding-server-ruby.vercel.app/donations"),
       },
       {
         path: "/featuredBlogs",
         element: <FeaturedBlogs></FeaturedBlogs>,
-        loader: () =>
-          fetch(
-            "https://blog-website-server-eight-mu.vercel.app/featuredBlogs"
-          ),
+        loader: () => fetch(`${import.meta.env.VITE_API_URL}/featuredBlogs`),
       },
       {
         path: "/login",

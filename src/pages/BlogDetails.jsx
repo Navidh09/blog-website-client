@@ -1,16 +1,44 @@
 import { NavLink, useLoaderData, useNavigate } from "react-router";
 import useAuth from "../hooks/useAuth";
 import { format } from "date-fns";
-import { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const BlogDetails = () => {
   const blog = useLoaderData();
   const { user } = useAuth();
-  const [remainingBlog, setRemainingBlog] = useState(blog);
   const navigate = useNavigate();
-  console.log(remainingBlog);
+  const [comments, setComments] = useState([]);
+
+  useEffect(() => {
+    axios.get(`${import.meta.env.VITE_API_URL}/comments`).then((res) => {
+      setComments(res.data);
+    });
+  }, [comments]);
+
+  const handleComment = (e) => {
+    e.preventDefault();
+    const comment = e.target.comment.value;
+
+    const commentData = {
+      comment: comment,
+      blogId: blog._id,
+      email: user.email,
+      date: new Date().toISOString(),
+    };
+
+    axios
+      .post(`${import.meta.env.VITE_API_URL}/comments`, commentData)
+      .then((res) => {
+        if (res.data.insertedId) {
+          toast.success("Success");
+          e.target.reset();
+        }
+      });
+  };
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -24,10 +52,7 @@ const BlogDetails = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(
-            `https://blog-website-server-eight-mu.vercel.app/blog/${id}`,
-            id
-          )
+          .delete(`${import.meta.env.VITE_API_URL}/blog/${id}`, id)
           .then((res) => {
             if (res.data.deletedCount) {
               navigate("/blogs");
@@ -36,8 +61,6 @@ const BlogDetails = () => {
                 text: "Selected blog has been deleted.",
                 icon: "success",
               });
-              const remaining = blog.filter((blog) => blog._id !== id);
-              setRemainingBlog(remaining);
             }
           });
       }
@@ -70,7 +93,7 @@ const BlogDetails = () => {
         <h2 className="card-title text-4xl">{title}</h2>
         <p className="text-sm mb-4">
           Author: {author}, Posted Date:{" "}
-          {format(new Date(createdAt), "dd MMM yyyy")}
+          {format(new Date(createdAt), "yyyy-MM-dd")}
         </p>
         <p className="mb-4 text-xl">
           Blog Category: <span className="font-bold">{category}</span>
@@ -98,13 +121,32 @@ const BlogDetails = () => {
             </div>
           </>
         ) : (
-          <textarea
-            className="textarea w-full mt-3"
-            name="shortDescription"
-            placeholder="write your comments here"
-            required
-          ></textarea>
+          <form onSubmit={handleComment}>
+            <textarea
+              className="textarea w-full mt-3"
+              name="comment"
+              placeholder="write your comments here"
+              required
+            ></textarea>
+            <button className="btn mt-2 bg-violet-500 text-xl">Comment</button>
+          </form>
         )}
+
+        <div className="mt-5">
+          <h2>Comments: </h2>
+          {comments.map((comment) => (
+            <h3 key={comment._id} className="mt-5">
+              {_id === comment.blogId && (
+                <h3 className="text-blue-500">
+                  {comment.email}:{" "}
+                  <span className="text-sm ml-4 text-white">
+                    {comment.comment}
+                  </span>
+                </h3>
+              )}
+            </h3>
+          ))}
+        </div>
       </div>
     </div>
   );
